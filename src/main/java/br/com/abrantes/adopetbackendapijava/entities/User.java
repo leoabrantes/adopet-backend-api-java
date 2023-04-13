@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="tb_user")
 public class User implements Serializable {
@@ -104,6 +105,15 @@ public class User implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 	
+	
+	public boolean hasHole(String roleName) {
+		for (Role role : roles) {
+			if (role.getAuthority().equals(roleName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 
 }

@@ -2,6 +2,7 @@ package br.com.abrantes.adopetbackendapijava.dto;
 
 import java.io.Serializable;
 
+import br.com.abrantes.adopetbackendapijava.entities.Pet;
 import br.com.abrantes.adopetbackendapijava.entities.Shelter;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Size;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Species;
@@ -34,6 +35,18 @@ public class PetDTO implements Serializable{
 		this.size = size;
 		this.status = status;
 		this.shelter = shelter;
+	}
+	
+	public PetDTO(Pet entity) {
+		id = entity.getId();
+		age = entity.getAge();
+		personality = entity.getPersonality();
+		picture_URL = entity.getPicture_URL();
+		species = entity.getSpecies();
+		size = entity.getSize();
+		status = entity.getStatus();
+		shelter = entity.getShelter();
+		
 	}
 
 

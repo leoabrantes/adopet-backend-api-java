@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.leoabrantes.dsclient.dto.ClientDTO;
+import com.leoabrantes.dsclient.dto.PetDTO;
 
 import br.com.abrantes.adopetbackendapijava.dto.PetDTO;
 import br.com.abrantes.adopetbackendapijava.entities.Pet;
@@ -32,40 +32,40 @@ public class PetService {
 		Page<Pet> list = repository.findAll(pageRequest);
 		
 		return list.map(x -> new PetDTO(x));
-		
 	}
+
 	
 	@Transactional(readOnly = true)
-	public ClientDTO findById(Long id) {
-		Optional<Client> obj = repository.findById(id);
-		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-		return new ClientDTO(entity);
+	public PetDTO findById(Long id) {
+		Optional<Pet> obj = repository.findById(id);
+		Pet entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+		return new PetDTO(entity);
 	}
 
 	@Transactional
-	public ClientDTO insert(ClientDTO dto) {
-		Client entity = new Client();
-		entity.setName(dto.getName());
+	public PetDTO insert(PetDTO dto) {
+		Pet entity = new Pet();
+		entity.setName(dto.get);
 		entity.setCpf(dto.getCpf());
 		entity.setIncome(dto.getIncome());
 		entity.setBirthDate(dto.getBirthDate());
 		entity.setChildren(dto.getChildren());
 		entity = repository.save(entity);
-		return new ClientDTO(entity);
+		return new PetDTO(entity);
 
 	}
 
 	@Transactional
-	public ClientDTO update(Long id, ClientDTO dto) {
+	public PetDTO update(Long id, PetDTO dto) {
 		try {
-			Client entity = repository.getOne(id);
+			Pet entity = repository.getOne(id);
 			entity.setName(dto.getName());
 			entity.setCpf(dto.getCpf());
 			entity.setIncome(dto.getIncome());
 			entity.setBirthDate(dto.getBirthDate());
 			entity.setChildren(dto.getChildren());
 			entity = repository.save(entity);
-			return new ClientDTO(entity);
+			return new PetDTO(entity);
 		}
 		catch(EntityNotFoundException e){
 			throw new ResourceNotFoundException("Id not found" + id);

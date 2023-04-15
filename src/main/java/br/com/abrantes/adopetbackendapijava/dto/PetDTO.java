@@ -1,6 +1,7 @@
 package br.com.abrantes.adopetbackendapijava.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import br.com.abrantes.adopetbackendapijava.entities.Pet;
 import br.com.abrantes.adopetbackendapijava.entities.Shelter;
@@ -12,6 +13,7 @@ public class PetDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	private String name;
 	private Double age;
 	private String personality;
 	private String picture_URL;
@@ -24,10 +26,11 @@ public class PetDTO implements Serializable{
 	}
 
 
-	public PetDTO(Long id, Double age, String personality, String picture_URL, Species species, Size size,
+	public PetDTO(Long id, String name, Double age, String personality, String picture_URL, Species species, Size size,
 			Status status, Shelter shelter) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.age = age;
 		this.personality = personality;
 		this.picture_URL = picture_URL;
@@ -39,6 +42,7 @@ public class PetDTO implements Serializable{
 	
 	public PetDTO(Pet entity) {
 		id = entity.getId();
+		name = entity.getName();
 		age = entity.getAge();
 		personality = entity.getPersonality();
 		picture_URL = entity.getPicture_URL();
@@ -57,6 +61,16 @@ public class PetDTO implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -128,6 +142,31 @@ public class PetDTO implements Serializable{
 	public void setShelter(Shelter shelter) {
 		this.shelter = shelter;
 	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, id, name, personality, picture_URL, shelter, size, species, status);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PetDTO other = (PetDTO) obj;
+		return Objects.equals(age, other.age) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(personality, other.personality) && Objects.equals(picture_URL, other.picture_URL)
+				&& Objects.equals(shelter, other.shelter) && size == other.size && species == other.species
+				&& status == other.status;
+	}
+
+
+	
 
 
 }

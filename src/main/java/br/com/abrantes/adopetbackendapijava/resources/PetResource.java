@@ -5,7 +5,6 @@ import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.abrantes.adopetbackendapijava.dto.PetDTO;
-import br.com.abrantes.adopetbackendapijava.dto.ShelterDTO;
 import br.com.abrantes.adopetbackendapijava.services.PetService;
 
 @RestController
@@ -29,13 +27,6 @@ public class PetResource {
 	
 	@Autowired
 	private PetService service;
-	
-	@GetMapping
-	public ResponseEntity<Page<PetDTO>> notificationsForCurrentUser(Pageable pageable){
-		Page<ShelterDTO> page = service.notificationForCurrentUser(pageable);
-		return ResponseEntity.ok().body(page);
-		
-	}
 	
 	@GetMapping
 	public ResponseEntity<Page<PetDTO>> findAll(

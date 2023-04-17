@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.leoabrantes.dsclient.dto.ClientDTO;
-
+import br.com.abrantes.adopetbackendapijava.dto.PetDTO;
 import br.com.abrantes.adopetbackendapijava.dto.ShelterDTO;
 import br.com.abrantes.adopetbackendapijava.services.PetService;
 
@@ -39,7 +38,7 @@ public class PetResource {
 	}
 	
 	@GetMapping
-	public ResponseEntity<Page<ClientDTO>> findAll(
+	public ResponseEntity<Page<PetDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
@@ -48,20 +47,20 @@ public class PetResource {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		Page<ClientDTO> list = service.findAllPaged(pageRequest);
+		Page<PetDTO> list = service.findAllPaged(pageRequest);
 		
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ClientDTO> findById(@PathVariable Long id){
-		ClientDTO dto = service.findById(id);
+	public ResponseEntity<PetDTO> findById(@PathVariable Long id){
+		PetDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	
 	@PostMapping
-	public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO dto){
+	public ResponseEntity<PetDTO> insert(@RequestBody PetDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();		
@@ -69,13 +68,13 @@ public class PetResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO dto){
+	public ResponseEntity<PetDTO> update(@PathVariable Long id, @RequestBody PetDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<ClientDTO> delete(@PathVariable Long id){
+	public ResponseEntity<PetDTO> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

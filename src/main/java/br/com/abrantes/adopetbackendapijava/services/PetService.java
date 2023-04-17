@@ -12,8 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.leoabrantes.dsclient.dto.PetDTO;
-
 import br.com.abrantes.adopetbackendapijava.dto.PetDTO;
 import br.com.abrantes.adopetbackendapijava.entities.Pet;
 import br.com.abrantes.adopetbackendapijava.repositories.PetRepository;
@@ -28,7 +26,7 @@ public class PetService {
 	
 	
 	@Transactional(readOnly = true)
-	public Page<PetDTO> findAllPet(PageRequest pageRequest){
+	public Page<PetDTO> findAllPaged(PageRequest pageRequest){
 		Page<Pet> list = repository.findAll(pageRequest);
 		
 		return list.map(x -> new PetDTO(x));
@@ -45,11 +43,15 @@ public class PetService {
 	@Transactional
 	public PetDTO insert(PetDTO dto) {
 		Pet entity = new Pet();
-		entity.setName(dto.get);
-		entity.setCpf(dto.getCpf());
-		entity.setIncome(dto.getIncome());
-		entity.setBirthDate(dto.getBirthDate());
-		entity.setChildren(dto.getChildren());
+		entity.setName(dto.getName());
+		entity.setAge(dto.getAge());
+		entity.setPersonality(dto.getPersonality());
+		entity.setPicture_URL(dto.getPicture_URL());
+		entity.setSpecies(dto.getSpecies());
+		entity.setShelter(dto.getShelter());
+		entity.setSize(dto.getSize());
+		entity.setStatus(dto.getStatus());
+		entity.setShelter(dto.getShelter());
 		entity = repository.save(entity);
 		return new PetDTO(entity);
 
@@ -60,11 +62,14 @@ public class PetService {
 		try {
 			Pet entity = repository.getOne(id);
 			entity.setName(dto.getName());
-			entity.setCpf(dto.getCpf());
-			entity.setIncome(dto.getIncome());
-			entity.setBirthDate(dto.getBirthDate());
-			entity.setChildren(dto.getChildren());
-			entity = repository.save(entity);
+			entity.setAge(dto.getAge());
+			entity.setPersonality(dto.getPersonality());
+			entity.setPicture_URL(dto.getPicture_URL());
+			entity.setSpecies(dto.getSpecies());
+			entity.setShelter(dto.getShelter());
+			entity.setSize(dto.getSize());
+			entity.setStatus(dto.getStatus());
+			entity.setShelter(dto.getShelter());
 			return new PetDTO(entity);
 		}
 		catch(EntityNotFoundException e){

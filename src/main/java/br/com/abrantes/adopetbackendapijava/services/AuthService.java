@@ -35,4 +35,12 @@ public class AuthService {
 			
 	}
 
+	public void validateAdmin() {
+		User user = authenticated();
+		if(!user.hasHole("ROLE_ADMIN")) {
+			throw new ForbiddenException ("Access denied");
+		}
+		
+	}
+
 }

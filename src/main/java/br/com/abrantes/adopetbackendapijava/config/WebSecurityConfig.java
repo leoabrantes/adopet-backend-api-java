@@ -40,6 +40,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManager();
 	}
 	
+	@Bean
+	public UserDetailsService userDetailsService() {
+	    return super.userDetailsService();
+	}
+	
 	
 	
 }

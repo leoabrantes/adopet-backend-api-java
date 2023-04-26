@@ -7,7 +7,7 @@ import br.com.abrantes.adopetbackendapijava.entities.Pet;
 import br.com.abrantes.adopetbackendapijava.entities.Shelter;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Size;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Species;
-import br.com.abrantes.adopetbackendapijava.entities.enums.Status;
+import br.com.abrantes.adopetbackendapijava.entities.enums.PetStatus;
 
 public class PetDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -19,7 +19,7 @@ public class PetDTO implements Serializable{
 	private String picture_URL;
 	private Species species;
 	private Size size;
-	private Status status;
+	private PetStatus status;
 	private Shelter shelter;
 	
 	public PetDTO() {
@@ -27,7 +27,7 @@ public class PetDTO implements Serializable{
 
 
 	public PetDTO(Long id, String name, Double age, String personality, String picture_URL, Species species, Size size,
-			Status status, Shelter shelter) {
+			PetStatus status, Shelter shelter) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -124,12 +124,12 @@ public class PetDTO implements Serializable{
 	}
 
 
-	public Status getStatus() {
+	public PetStatus getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(Status status) {
+	public void setStatus(PetStatus status) {
 		this.status = status;
 	}
 

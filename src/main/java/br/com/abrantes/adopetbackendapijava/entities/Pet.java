@@ -1,17 +1,23 @@
 package br.com.abrantes.adopetbackendapijava.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.com.abrantes.adopetbackendapijava.entities.enums.PetStatus;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Size;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Species;
-import br.com.abrantes.adopetbackendapijava.entities.enums.Status;
 
 @Entity
 @Table(name="tb_pet")
@@ -27,15 +33,21 @@ public class Pet implements Serializable {
 	private String picture_URL;
 	private Species species;
 	private Size size;
-	private Status status;
-	private Shelter shelter;
+	private PetStatus status;
+	
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_pet_shelter",
+			joinColumns = @JoinColumn(name = "pet_id"),
+			inverseJoinColumns = @JoinColumn(name = "shelter_id"))
+	private Set<Shelter> shelter = new HashSet<>();
 	
 	public Pet() {
 	}
 	
 
-	public Pet(Long id, Double age, String personality, String picture_URL, Species species, Size size, Status status,
-			Shelter shelter) {
+	public Pet(Long id, String name, Double age, String personality, String picture_URL, Species species, Size size, PetStatus status,
+			Set<Shelter> shelter) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
@@ -118,22 +130,22 @@ public class Pet implements Serializable {
 	}
 
 
-	public Status getStatus() {
+	public PetStatus getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(Status status) {
+	public void setStatus(PetStatus status) {
 		this.status = status;
 	}
 
 
-	public Shelter getShelter() {
+	public Set<Shelter> getShelter() {
 		return shelter;
 	}
 
 
-	public void setShelter(Shelter shelter) {
+	public void SetShelter(Set<Shelter> shelter) {
 		this.shelter = shelter;
 	}
 

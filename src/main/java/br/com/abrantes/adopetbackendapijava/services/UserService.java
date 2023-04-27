@@ -52,7 +52,6 @@ public class UserService {
 		entity.setName(user.getName());
 		entity.setEmail(user.getEmail());
 		entity.setPassword(user.getPassword());
-		entity.setRoles(user.getRoles());
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 

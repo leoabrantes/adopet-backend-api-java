@@ -48,10 +48,8 @@ public class PetService {
 		entity.setPersonality(dto.getPersonality());
 		entity.setPicture_URL(dto.getPicture_URL());
 		entity.setSpecies(dto.getSpecies());
-		entity.setShelter(dto.getShelter());
 		entity.setSize(dto.getSize());
 		entity.setStatus(dto.getStatus());
-		entity.setShelter(dto.getShelter());
 		entity = repository.save(entity);
 		return new PetDTO(entity);
 
@@ -66,10 +64,8 @@ public class PetService {
 			entity.setPersonality(dto.getPersonality());
 			entity.setPicture_URL(dto.getPicture_URL());
 			entity.setSpecies(dto.getSpecies());
-			entity.setShelter(dto.getShelter());
 			entity.setSize(dto.getSize());
 			entity.setStatus(dto.getStatus());
-			entity.setShelter(dto.getShelter());
 			return new PetDTO(entity);
 		}
 		catch(EntityNotFoundException e){

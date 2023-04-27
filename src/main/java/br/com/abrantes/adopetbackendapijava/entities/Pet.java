@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.abrantes.adopetbackendapijava.entities.enums.PetStatus;
@@ -36,7 +36,7 @@ public class Pet implements Serializable {
 	private PetStatus status;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinTable(name = "tb_pet_shelter",
 			joinColumns = @JoinColumn(name = "pet_id"),
 			inverseJoinColumns = @JoinColumn(name = "shelter_id"))
@@ -46,8 +46,8 @@ public class Pet implements Serializable {
 	}
 	
 
-	public Pet(Long id, String name, Double age, String personality, String picture_URL, Species species, Size size, PetStatus status,
-			Set<Shelter> shelter) {
+	public Pet(Long id, String name, Double age, String personality, String picture_URL, Species species, Size size, 
+			PetStatus status) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
@@ -56,7 +56,6 @@ public class Pet implements Serializable {
 		this.species = species;
 		this.size = size;
 		this.status = status;
-		this.shelter = shelter;
 	}
 
 
@@ -145,31 +144,7 @@ public class Pet implements Serializable {
 	}
 
 
-	public void SetShelter(Set<Shelter> shelter) {
-		this.shelter = shelter;
-	}
 
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(age, id, name, personality, picture_URL, shelter, size, species, status);
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pet other = (Pet) obj;
-		return Objects.equals(age, other.age) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(personality, other.personality) && Objects.equals(picture_URL, other.picture_URL)
-				&& Objects.equals(shelter, other.shelter) && size == other.size && species == other.species
-				&& status == other.status;
-	}
 
 
 

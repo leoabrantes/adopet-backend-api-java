@@ -1,13 +1,14 @@
 package br.com.abrantes.adopetbackendapijava.dto;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.com.abrantes.adopetbackendapijava.entities.Pet;
 import br.com.abrantes.adopetbackendapijava.entities.Shelter;
+import br.com.abrantes.adopetbackendapijava.entities.enums.PetStatus;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Size;
 import br.com.abrantes.adopetbackendapijava.entities.enums.Species;
-import br.com.abrantes.adopetbackendapijava.entities.enums.PetStatus;
 
 public class PetDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -20,14 +21,16 @@ public class PetDTO implements Serializable{
 	private Species species;
 	private Size size;
 	private PetStatus status;
-	private Shelter shelter;
+	
+	private Set<ShelterDTO> shelteries = new HashSet<>();
+
 	
 	public PetDTO() {
 	}
 
 
 	public PetDTO(Long id, String name, Double age, String personality, String picture_URL, Species species, Size size,
-			PetStatus status, Shelter shelter) {
+			PetStatus status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,7 +40,6 @@ public class PetDTO implements Serializable{
 		this.species = species;
 		this.size = size;
 		this.status = status;
-		this.shelter = shelter;
 	}
 	
 	public PetDTO(Pet entity) {
@@ -49,8 +51,12 @@ public class PetDTO implements Serializable{
 		species = entity.getSpecies();
 		size = entity.getSize();
 		status = entity.getStatus();
-		shelter = entity.getShelter();
 		
+	}
+	
+	public PetDTO(Pet entity, Set<Shelter> shelteries) {
+		this(entity);
+		shelteries.forEach(cat -> this.shelteries.add(new ShelterDTO(cat)));
 	}
 
 
@@ -134,36 +140,14 @@ public class PetDTO implements Serializable{
 	}
 
 
-	public Shelter getShelter() {
-		return shelter;
+	public Set<ShelterDTO> getShelter() {
+		return shelteries;
 	}
 
 
-	public void setShelter(Shelter shelter) {
-		this.shelter = shelter;
-	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(age, id, name, personality, picture_URL, shelter, size, species, status);
-	}
 
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PetDTO other = (PetDTO) obj;
-		return Objects.equals(age, other.age) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(personality, other.personality) && Objects.equals(picture_URL, other.picture_URL)
-				&& Objects.equals(shelter, other.shelter) && size == other.size && species == other.species
-				&& status == other.status;
-	}
 
 
 	

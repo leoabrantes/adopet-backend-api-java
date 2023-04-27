@@ -1,9 +1,9 @@
 package br.com.abrantes.adopetbackendapijava.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +25,22 @@ public class Shelter implements Serializable {
 	private String state;
 	
 	@OneToMany(mappedBy = "shelter")
-	private List<Pet> pet = new ArrayList<>();
+	private Set<Pet> pets = new HashSet<>();
 	
 		
 	public Shelter() {
 	}
+	
+
+	public Shelter(Long id, String name, String city, String state) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.city = city;
+		this.state = state;
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -61,6 +72,10 @@ public class Shelter implements Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+	
+	public Set<Pet> getPet() {
+		return pets;
 	}
 
 	@Override

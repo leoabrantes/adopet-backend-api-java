@@ -6,13 +6,12 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import br.com.abrantes.adopetbackendapijava.entities.enums.PetStatus;
@@ -36,7 +35,7 @@ public class Pet implements Serializable {
 	private PetStatus status;
 	
 	
-	@ManyToOne
+	@ManyToMany
 	@JoinTable(name = "tb_pet_shelter",
 			joinColumns = @JoinColumn(name = "pet_id"),
 			inverseJoinColumns = @JoinColumn(name = "shelter_id"))
@@ -144,11 +143,26 @@ public class Pet implements Serializable {
 	}
 
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, id, name, personality, picture_URL, shelter, size, species, status);
+	}
 
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pet other = (Pet) obj;
+		return Objects.equals(age, other.age) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(personality, other.personality) && Objects.equals(picture_URL, other.picture_URL)
+				&& Objects.equals(shelter, other.shelter) && size == other.size && species == other.species
+				&& status == other.status;
+	}
 
-
-	
-	
 
 }

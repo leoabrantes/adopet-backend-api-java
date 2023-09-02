@@ -10,10 +10,10 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 
 
 INSERT INTO tb_pet (name, age, personality, picture_URL, species, size, status) 
-VALUES ('Bob', 3,'friendly', 'https://eu.themyersbriggs.com/en/Using-Type/Your-Type-image?typie=030f9ffa-f863-47af-8e5d-31df68e64b13', 1, 5, 2);
+VALUES ('Bob', 3,'friendly', 'https://eu.themyersbriggs.com/en/Using-Type/Your-Type-image?typie=030f9ffa-f863-47af-8e5d-31df68e64b13', 1, 2, 2);
 
 INSERT INTO tb_pet (name, age, personality, picture_URL, species, size, status) 
-VALUES ('Bingo', 2,'loyal', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.petz.com.br%2Fblog%2Fdicas%2Fcat-sitter%2F&psig=AOvVaw2tFDUYRPjSr0xuluYPN5dh&ust=1682709714213000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLCS8Kjkyv4CFQAAAAAdAAAAABAE', 2, 2, 1);
+VALUES ('Bingo', 2,'loyal', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.petz.com.br%2Fblog%2Fdicas%2Fcat-sitter%2F&psig=AOvVaw2tFDUYRPjSr0xuluYPN5dh&ust=1682709714213000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLCS8Kjkyv4CFQAAAAAdAAAAABAE', 0, 1, 3);
 
 INSERT INTO tb_shelter (name, city, state) 
 VALUES ('Mauá Petz', 'Mauá', 'São Paulo');

@@ -1,9 +1,7 @@
 package br.com.abrantes.adopetbackendapijava.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.abrantes.adopetbackendapijava.entities.enums.PetStatus;
@@ -35,18 +33,18 @@ public class Pet implements Serializable {
 	private PetStatus status;
 	
 	
-	@ManyToMany
+	@ManyToOne
 	@JoinTable(name = "tb_pet_shelter",
 			joinColumns = @JoinColumn(name = "pet_id"),
 			inverseJoinColumns = @JoinColumn(name = "shelter_id"))
-	private Set<Shelter> shelter = new HashSet<>();
+	private Shelter shelter;
 	
 	public Pet() {
 	}
 	
 
 	public Pet(Long id, String name, Double age, String personality, String picture_URL, Species species, Size size, 
-			PetStatus status) {
+			PetStatus status, Shelter shelter) {
 		this.id = id;
 		this.name = name;
 		this.age = age;
@@ -55,6 +53,8 @@ public class Pet implements Serializable {
 		this.species = species;
 		this.size = size;
 		this.status = status;
+		this.shelter = shelter;
+
 	}
 
 
@@ -138,8 +138,14 @@ public class Pet implements Serializable {
 	}
 
 
-	public Set<Shelter> getShelter() {
+	public Shelter getShelter() {
 		return shelter;
+	}
+	
+	
+
+	public void setShelter(Shelter shelter) {
+		this.shelter = shelter;
 	}
 
 

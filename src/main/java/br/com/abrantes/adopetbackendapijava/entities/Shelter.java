@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +23,8 @@ public class Shelter implements Serializable {
 	private String name;
 	private String city;
 	private String state;
+	private String email;
+	private String telefone;
 	
 	@OneToMany(mappedBy = "shelter")
 	private List<Pet> pets = new ArrayList<>();
@@ -34,12 +34,14 @@ public class Shelter implements Serializable {
 	}
 	
 
-	public Shelter(Long id, String name, String city, String state) {
+	public Shelter(Long id, String name, String city, String state, String email, String telefone) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.city = city;
 		this.state = state;
+		this.email = email;
+		this.telefone = telefone;
 	}
 
 
@@ -76,14 +78,32 @@ public class Shelter implements Serializable {
 		this.state = state;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
 	public List<Pet> getPet() {
 		return pets;
 	}
 
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(city, id, name, state);
+		return Objects.hash(city, email, id, name, pets, state, telefone);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -94,9 +114,12 @@ public class Shelter implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Shelter other = (Shelter) obj;
-		return Objects.equals(city, other.city) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
-				&& Objects.equals(state, other.state);
+		return Objects.equals(city, other.city) && Objects.equals(email, other.email) && Objects.equals(id, other.id)
+				&& Objects.equals(name, other.name) && Objects.equals(pets, other.pets)
+				&& Objects.equals(state, other.state) && Objects.equals(telefone, other.telefone);
 	}
+
+	
 	
 	
 

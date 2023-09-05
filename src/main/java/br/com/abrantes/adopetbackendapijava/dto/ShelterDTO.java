@@ -11,17 +11,21 @@ public class ShelterDTO   implements Serializable{
 	private String name;
 	private String city;
 	private String state;
+	private String email;
+	private String telefone;
 	
 	public ShelterDTO() {
 		
 	}
 	
-	public ShelterDTO(Long id, String name, String city, String state) {
+	public ShelterDTO(Long id, String name, String city, String state, String email, String telefone) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.city = city;
 		this.state = state;
+		this.email = email;
+		this.telefone = telefone;
 	}
 
 
@@ -30,6 +34,8 @@ public class ShelterDTO   implements Serializable{
 		name = shelter.getName();
 		city = shelter.getCity();
 		state = shelter.getState();
+		email = shelter.getEmail();
+		telefone = shelter.getTelefone();
 	}
 
 	public Long getId() {
@@ -62,6 +68,22 @@ public class ShelterDTO   implements Serializable{
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	

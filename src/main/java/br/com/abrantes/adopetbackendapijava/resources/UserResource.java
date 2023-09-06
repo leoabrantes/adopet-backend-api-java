@@ -23,7 +23,7 @@ import br.com.abrantes.adopetbackendapijava.entities.User;
 import br.com.abrantes.adopetbackendapijava.services.UserService;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/user")
 public class UserResource {
 	
 	@Autowired

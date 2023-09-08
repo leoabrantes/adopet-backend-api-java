@@ -1,5 +1,7 @@
 package br.com.abrantes.adopetbackendapijava.services;
 
+import java.util.Optional;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,10 @@ public class ShelterService {
 
 	
 	@Transactional(readOnly = true)
-	public ShelterDTO findByName(String name) {
-		Shelter obj = repository.findByName(name);
-		return new ShelterDTO(obj);
+	public ShelterDTO findById(Long id) {
+		Optional<Shelter> obj = repository.findById(id);
+		Shelter entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+		return new ShelterDTO(entity);
 	}
 
 	@Transactional
@@ -55,27 +58,27 @@ public class ShelterService {
 	}
 
 	@Transactional
-	public ShelterDTO update(String name, ShelterDTO dto) {
+	public ShelterDTO update(Long id, ShelterDTO dto) {
 			authService.validateAdmin();
 		try {
-			Shelter entity = repository.getOne(name);
+			Shelter entity = repository.getOne(id);
 			entity.setName(dto.getName());
 			entity.setCity(dto.getCity());
 			entity.setState(dto.getState());
 			return new ShelterDTO(entity);
 		}
 		catch(EntityNotFoundException e){
-			throw new ResourceNotFoundException("Name not found" + name);
+			throw new ResourceNotFoundException("Name not found" + id);
 		}
 	}
 
-	public void delete(String name) {
+	public void delete(Long id) {
 		authService.validateAdmin();
 		try {
-		repository.deleteById(name);
+		repository.deleteById(id);
 		}
 		catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id not found" + name);
+			throw new ResourceNotFoundException("Id not found" + id);
 		}
 		catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Integrity violation");

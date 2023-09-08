@@ -22,7 +22,7 @@ import br.com.abrantes.adopetbackendapijava.dto.ShelterDTO;
 import br.com.abrantes.adopetbackendapijava.services.ShelterService;
 
 @RestController
-@RequestMapping(value = "/shelteries")
+@RequestMapping(value = "/shelter")
 public class ShelterResource {
 
 	@Autowired
@@ -45,8 +45,8 @@ public class ShelterResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ShelterDTO> findByName(@PathVariable String name){
-		ShelterDTO dto = service.findByName(name);
+	public ResponseEntity<ShelterDTO> findById(@PathVariable Long id){
+		ShelterDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
@@ -60,14 +60,14 @@ public class ShelterResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<ShelterDTO> update(@PathVariable String name, @RequestBody ShelterDTO dto){
-		dto = service.update(name, dto);
+	public ResponseEntity<ShelterDTO> update(@PathVariable Long id, @RequestBody ShelterDTO dto){
+		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{name}")
-	public ResponseEntity<ShelterDTO> delete(@PathVariable String name){
-		service.delete(name);
+	public ResponseEntity<ShelterDTO> delete(@PathVariable Long id){
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 

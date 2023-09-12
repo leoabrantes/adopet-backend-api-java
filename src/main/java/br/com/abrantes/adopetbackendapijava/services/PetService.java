@@ -24,6 +24,9 @@ public class PetService {
 	@Autowired
 	private PetRepository repository;
 	
+
+	@Autowired
+	private AuthService authService;
 	
 	@Transactional(readOnly = true)
 	public Page<PetDTO> findAllPaged(PageRequest pageRequest){
@@ -74,6 +77,8 @@ public class PetService {
 	}
 
 	public void delete(Long id) {
+		authService.validateAdmin();
+
 		try {
 		repository.deleteById(id);
 		}

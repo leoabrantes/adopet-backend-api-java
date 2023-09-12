@@ -65,7 +65,7 @@ public class ShelterResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	@DeleteMapping(value = "/{name}")
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<ShelterDTO> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();

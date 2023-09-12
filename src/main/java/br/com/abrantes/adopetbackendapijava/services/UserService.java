@@ -78,6 +78,8 @@ public class UserService implements UserDetailsService {
 	}
 
 	public void delete(Long id) {
+		authService.validateAdmin();
+
 		try {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
@@ -89,6 +91,7 @@ public class UserService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
 		User user = repository.findByEmail(username);
 		if (user == null) {
 			logger.error("User not found: " + username);

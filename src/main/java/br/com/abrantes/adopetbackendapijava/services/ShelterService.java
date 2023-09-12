@@ -74,6 +74,7 @@ public class ShelterService {
 
 	public void delete(Long id) {
 		authService.validateAdmin();
+		
 		try {
 		repository.deleteById(id);
 		}

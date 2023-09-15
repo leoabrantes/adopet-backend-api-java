@@ -45,6 +45,7 @@ public class PetService {
 
 	@Transactional
 	public PetDTO insert(PetDTO dto) {
+		authService.validateAdmin();
 		Pet entity = new Pet();
 		entity.setName(dto.getName());
 		entity.setAge(dto.getAge());
@@ -60,6 +61,7 @@ public class PetService {
 
 	@Transactional
 	public PetDTO update(Long id, PetDTO dto) {
+		authService.validateAdmin();
 		try {
 			Pet entity = repository.getOne(id);
 			entity.setName(dto.getName());

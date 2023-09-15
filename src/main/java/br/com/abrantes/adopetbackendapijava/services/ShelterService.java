@@ -31,8 +31,6 @@ public class ShelterService {
 	@Transactional(readOnly = true)
 	public Page<ShelterDTO> findAllPaged(PageRequest pageRequest){
 		
-		authService.validateAdmin();
-		
 		Page<Shelter> list = repository.findAll(pageRequest);
 		
 		return list.map(x -> new ShelterDTO(x));

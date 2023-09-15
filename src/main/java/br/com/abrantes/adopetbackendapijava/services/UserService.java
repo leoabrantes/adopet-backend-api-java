@@ -56,6 +56,7 @@ public class UserService implements UserDetailsService {
 
 	@Transactional
 	public UserDTO insert(User user) {
+		authService.validateAdmin();
 		User entity = new User();
 		entity.setName(user.getName());
 		entity.setEmail(user.getEmail());
@@ -67,6 +68,7 @@ public class UserService implements UserDetailsService {
 
 	@Transactional
 	public UserDTO update(Long id, UserDTO dto) {
+		authService.validateAdmin();
 		try {
 			User entity = repository.getOne(id);
 			entity.setName(dto.getName());

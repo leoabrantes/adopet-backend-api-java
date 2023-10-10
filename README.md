@@ -1,14 +1,14 @@
-# Project: adopet-backend-api-java
+# Projeto: adopet-backend-api-java
 
 <br />  
 
-## About this Project
-Pet list website where it's possible to get information about and conecting. <br />
+## Sobre o projeto
+API Rest para entrar Web Site. <br />
 
 
 <br />  
 
-### Platform: <br />
+### Plataforma: <br />
 ![Login](Ferramentas.jpg)
 
 
@@ -19,7 +19,7 @@ Frameworks: Springboot, Java, APIRest <br />
 
 <br />
 
-## Some Screens
+## Algumas imagens
 
 <br /><br />
 

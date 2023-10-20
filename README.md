@@ -23,7 +23,10 @@ Obs.: Este projeto começou a ser desenvolvido no desafio "challenge back-end", 
 
 ## Utilização
 <br />
-A consulta pode ser realizada através de requisições Gets, Post, Put e Del. As buscas Gets poderam ser por id ou busca total paginada.
+A consulta é realizada através de requisições Get, Post, Put e Del. 
+<br />
+Obs.: Busca Get é realizada por id ou busca total paginada. Os testes foram realizados via Postman.
+
 <br />
 <br />
 
@@ -32,8 +35,12 @@ A consulta pode ser realizada através de requisições Gets, Post, Put e Del. A
 <br />
 <br />
 
-A API também tem um esquema de segurança utilizando token, e de acordo com a autorização do usuário (Admin ou tutor), o sistema restringe ou disponibiliza certas operações.
+![postmanusers](https://github.com/leoabrantes/adopet-backend-api-java/blob/main/imgs/postmanusers.jpg)
 
+<br />
+<br />
+
+A API tem um esquema de segurança utilizando token, e de acordo com a autorização do usuário (Admin ou tutor), o sistema restringe ou disponibiliza certas operações.
 <br />
 <br />
 
@@ -42,66 +49,40 @@ A API também tem um esquema de segurança utilizando token, e de acordo com a a
 <br />
 <br />
 
-Obs.: Depois de receber a requisição na lista especificada, o backend trabalha para que a API envie as informações via JSON.
-<br />
-Até momento é possível realizar as seguintes requisições:
-<br />
-<br />
-          - COMANDO GET: 
-               Obter dados dos jogos, busca por id e busca por listas
-<br />
-<br />
-          - COMANDO POST: 
-               Realocação de posição dos jogos
-<br />
-<br />
-
-![getall](https://github.com/leoabrantes/dslist/blob/main/img/getall.jpg)
-<br />
-Obs.: Os testes de requisições foram aplicado via Postman
-<br />
-<br />
-
 
 ## Estruturação e código
 ### O projeto foi construido respeitando o sistema de padrão camadas: Controller, Service e repository
-![estrutura](https://github.com/leoabrantes/dslist/blob/main/img/estrutura.jpg)
+![spring](https://github.com/leoabrantes/adopet-backend-api-java/blob/main/imgs/spring.jpg)
 <br />
 <br />
 
 
-
-## Recursos adicionais
-- O sistema possui um recurso adicional de movimentação do jogo pelo usuário
-![movimentacao](https://github.com/leoabrantes/dslist/blob/main/img/movimentacao.jpg)
-<br />
-
-- O recurso de troca de posição foi testado via Postman:
-
-![postman](https://github.com/leoabrantes/dslist/blob/main/img/postman.jpg)
-<br />
-<br />
 
 ## Perfis de Testes
 Para testar as requisições do projeto, foram criados 3 perfis:
 
 1) Perfil de teste
-- Inseridos informações ao banco H2 local apenas para testes iniciais
-![seeding](https://github.com/leoabrantes/dslist/blob/main/img/seeding.jpg)
+- Inseridos informações ao banco H2 local para testes iniciais
+  <br />
+![bancoh2](https://github.com/leoabrantes/adopet-backend-api-java/blob/main/imgs/bancoh2.jpg)
 <br />
 <br />
 
 2) Perfil de dev
-- Utilização do banco de dados postgres, utilizando pgadmin via Docker
+- Utilização do banco de dados postgres, utilizando pgadmin via Docker <br />
 - ![pgadmin](https://github.com/leoabrantes/adopet-backend-api-java/blob/main/imgs/pgadmin.jpg)
+  
 <br />
 <br />
    
 3) Perfil de produção
    Implementação do deploy na nuvem, em fase de implementação.
-   
-## Diagrama UML
 
+<br />
+<br />
+
+## Diagrama UML
+<br />
 ![uml](https://github.com/leoabrantes/adopet-backend-api-java/blob/main/imgs/uml.jpg)
 
 <br />

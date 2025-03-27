@@ -92,7 +92,7 @@ Para testar as requisições do projeto, foram criados 3 perfis:
 ## Instalação / Execução
 1. Necessário possuir o ambiente JDK/JVM instalado
 2. Necessário SpringBoot ou alguma IDE capaz de rodar projetos maven
-3. Git clone https://github.com/leoabrantes/dslist.git
+3. Git clone https://github.com/leoabrantes/adopet-backend-api-java.git
 
 <br />
 <br />
